@@ -15,9 +15,7 @@ from flask_login import (
 from werkzeug.security import check_password_hash
 
 
-barname_df = pd.read_excel(
-    os.path.join(BASE_DIR, "static", "data", "barname.xlsx")
-)
+
 df1 = pd.read_excel(
     os.path.join(BASE_DIR, "static", "data", "1405-02.xlsx")
 )
@@ -91,9 +89,11 @@ def login():
 @login_required
 def my_dashboard():
 
-    my_data = barname_df[
-        barname_df["بازاریاب"] == current_user.marketer
-    ]
+    from models import Barname
+
+    my_data = Barname.query.filter_by(
+        marketer=current_user.marketer
+    ).all()
 
     return render_template(
 
