@@ -24,6 +24,8 @@ df = pd.read_excel(
 df = pd.read_excel(
     os.path.join(BASE_DIR, "static", "data", "1405-03.xlsx")
 )
+
+
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.environ.get(
@@ -64,8 +66,16 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
+        print("USERNAME:", username)
+        print("PASSWORD:", password)
+
         user = User.query.filter_by(username=username).first()
 
+        print("USER:", user)
+
+        if user:
+            print("DB PASSWORD:", user.password)
+            print("CHECK:", check_password_hash(user.password, password))
 
         if user and check_password_hash(user.password, password):
             login_user(user)
