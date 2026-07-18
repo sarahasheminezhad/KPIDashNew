@@ -144,10 +144,52 @@ background:#1d4ed8;
 transform:translateY(-2px);
 
 }
+        .login-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.login-buttons button{
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:15px;
+    transition:.3s;
+}
+
+.user-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.user-btn:hover{
+    background:#1d4ed8;
+}
+
+.admin-btn{
+    background:#1f2937;
+    color:white;
+}
+
+.admin-btn:hover{
+    background:#111827;
+}
     </style>
 </head>
 <body>
+<div class="login-buttons">
 
+    <a href="/login">
+        <button class="admin-btn">
+            🛡 ورود مدیریت
+        </button>
+    </a>
+
+</div>
 <div class="container">
     <h1>🏆 داشبورد رتبه‌بندی و عملکرد کارشناسان</h1>
 
