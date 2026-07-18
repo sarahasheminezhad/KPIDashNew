@@ -18,7 +18,9 @@ from werkzeug.security import check_password_hash
 barname_df = pd.read_excel(
     os.path.join(BASE_DIR, "static", "data", "barname.xlsx")
 )
-
+df = pd.read_excel(
+    os.path.join(BASE_DIR, "static", "data", "1405-02.xlsx")
+)
 df = pd.read_excel(
     os.path.join(BASE_DIR, "static", "data", "1405-03.xlsx")
 )
