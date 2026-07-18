@@ -78,8 +78,13 @@ def login():
             print("CHECK:", check_password_hash(user.password, password))
 
         if user and check_password_hash(user.password, password):
-            login_user(user)
-            return redirect(url_for("my_dashboard"))
+
+    login_user(user)
+
+    if user.role == "admin":
+        return redirect(url_for("admin"))
+
+    return redirect(url_for("my_dashboard"))
 
         return render_template(
             "login.html",
@@ -114,7 +119,17 @@ def my_dashboard():
         total_weight=my_data["وزن"].sum()
 
     )
+@app.route("/admin")
+@login_required
+def admin():
 
+    if current_user.role != "admin":
+        return "Access Denied", 403
+
+    return render_template(
+        "admin.html",
+        users=barname_df.to_dict(orient="records")
+    )
 
 @app.route("/logout")
 @login_required
